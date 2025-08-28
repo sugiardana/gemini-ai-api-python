@@ -22,7 +22,7 @@ def extract_text(resp):
     except Exception as e:
         return str(resp)
 
-st.title("🎨 Gemini AI Playground (Streamlit)")
+st.title("🎨 Chatbox Menggunakan Gemini AI")
 
 tab1, tab2, tab3, tab4 = st.tabs(["💬 Teks", "🖼️ Gambar", "📄 Dokumen", "🎵 Audio"])
 
