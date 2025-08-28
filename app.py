@@ -22,23 +22,6 @@ def extract_text(resp):
     except Exception as e:
         return str(resp)
 
-# Foto lokal → Base64
-try:
-    with open("foto.jpg", "rb") as img_file:
-        img_base64 = base64.b64encode(img_file.read()).decode()
-
-    st.markdown(
-        f"""
-        <div style="display: flex; align-items: center; margin-top: 10px;">
-            <img src="data:image/jpeg;base64,{img_base64}" width="25" style="margin-right:10px;">
-            <span style="font-size:16px;">I Made Sugi Ardana</span>
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
-except FileNotFoundError:
-    st.warning("Foto tidak ditemukan di lokal. Silakan tambahkan `foto.jpg`.")
-
 st.title("🎨 Chatbox Gemini AI")
 
 tab1, tab2, tab3, tab4 = st.tabs(["💬 Teks", "🖼️ Gambar", "📄 Dokumen", "🎵 Audio"])
