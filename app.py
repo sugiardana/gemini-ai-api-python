@@ -24,12 +24,12 @@ def extract_text(resp):
 
 st.title("🎨 Gemini AI Playground (Streamlit)")
 
-tab1, tab2, tab3, tab4 = st.tabs(["💬 Text", "🖼️ Gambar", "📄 Dokumen", "🎵 Audio"])
+tab1, tab2, tab3, tab4 = st.tabs(["💬 Teks", "🖼️ Gambar", "📄 Dokumen", "🎵 Audio"])
 
 # 1. Text
 with tab1:
     prompt = st.text_area("Masukkan perintah:")
-    if st.button("Kirim Perintah"):
+    if st.button("Kirim Perintah Teks"):
         if prompt.strip():
             model = genai.GenerativeModel(GEMINI_MODEL)
             resp = model.generate_content(prompt)
@@ -40,7 +40,7 @@ with tab1:
 with tab2:
     prompt = st.text_area("Perintah untuk gambar:")
     image_file = st.file_uploader("Upload Image", type=["png", "jpg", "jpeg"])
-    if st.button("Kirim Perintah"):
+    if st.button("Kirim Perintah Gambar"):
         if image_file and prompt.strip():
             image_data = image_file.read()
             model = genai.GenerativeModel(GEMINI_MODEL)
@@ -58,7 +58,7 @@ with tab2:
 with tab3:
     prompt = st.text_area("Perintah untuk dokumen:", value="Tolong buatkan ringkasan dari dokumen berikut.")
     doc_file = st.file_uploader("Upload Document", type=["pdf", "txt", "docx"])
-    if st.button("Kirim Perintah"):
+    if st.button("Kirim Perintah Dokumen"):
         if doc_file:
             doc_data = doc_file.read()
             model = genai.GenerativeModel(GEMINI_MODEL)
@@ -76,7 +76,7 @@ with tab3:
 with tab4:
     prompt = st.text_area("Perintah untuk audio:", value="Ubah menjadi tulisan audio berikut.")
     audio_file = st.file_uploader("Upload Audio", type=["mp3", "wav", "m4a"])
-    if st.button("Kirim Perintah"):
+    if st.button("Kirim Perintah Audio"):
         if audio_file:
             audio_data = audio_file.read()
             model = genai.GenerativeModel(GEMINI_MODEL)
