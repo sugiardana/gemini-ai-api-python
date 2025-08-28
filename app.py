@@ -43,7 +43,7 @@ tab1, tab2, tab3, tab4 = st.tabs(["💬 Teks", "🖼️ Gambar", "📄 Dokumen",
 
 # 1. Text
 with tab1:
-    prompt = st.text_area("Masukkan perintah:")
+    prompt = st.text_area("Masukkan perintah:", value="Tolong buatkan motivasi positif untuk hari ini.")
     if st.button("Kirim Perintah Teks"):
         if prompt.strip():
             model = genai.GenerativeModel(GEMINI_MODEL)
@@ -53,7 +53,7 @@ with tab1:
 
 # 2. Image
 with tab2:
-    prompt = st.text_area("Perintah untuk gambar:")
+    prompt = st.text_area("Perintah untuk gambar:", value="Tolong jelaskan ini gambar apa.")
     image_file = st.file_uploader("Upload Image", type=["png", "jpg", "jpeg"])
     if st.button("Kirim Perintah Gambar"):
         if image_file and prompt.strip():
