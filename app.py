@@ -2,11 +2,6 @@ import os
 import base64
 import streamlit as st
 import google.generativeai as genai
-#from dotenv import load_dotenv
-
-# Load .env
-# load_dotenv()
-# genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 
 # Ambil API Key dari secrets
 api_key = st.secrets["GEMINI_API_KEY"]
@@ -27,14 +22,14 @@ def extract_text(resp):
     except Exception as e:
         return str(resp)
 
-st.title("🎨 Gemini AI Playground (Streamlit)")
+st.title("🎨 Chatbox Gemini AI")
 
-tab1, tab2, tab3, tab4 = st.tabs(["💬 Text", "🖼️ Image", "📄 Document", "🎵 Audio"])
+tab1, tab2, tab3, tab4 = st.tabs(["💬 Teks", "🖼️ Gambar", "📄 Dokumen", "🎵 Audio"])
 
 # 1. Text
 with tab1:
-    prompt = st.text_area("Masukkan prompt:")
-    if st.button("Generate Text"):
+    prompt = st.text_area("Masukkan perintah:")
+    if st.button("Kirim Perintah Teks"):
         if prompt.strip():
             model = genai.GenerativeModel(GEMINI_MODEL)
             resp = model.generate_content(prompt)
@@ -43,9 +38,9 @@ with tab1:
 
 # 2. Image
 with tab2:
-    prompt = st.text_area("Prompt untuk gambar:")
+    prompt = st.text_area("Perintah untuk gambar:")
     image_file = st.file_uploader("Upload Image", type=["png", "jpg", "jpeg"])
-    if st.button("Generate from Image"):
+    if st.button("Kirim Perintah Gambar"):
         if image_file and prompt.strip():
             image_data = image_file.read()
             model = genai.GenerativeModel(GEMINI_MODEL)
@@ -61,9 +56,9 @@ with tab2:
 
 # 3. Document
 with tab3:
-    prompt = st.text_area("Prompt untuk dokumen:", value="Tolong buatkan ringkasan dari dokumen berikut.")
+    prompt = st.text_area("Perintah untuk dokumen:", value="Tolong buatkan ringkasan dari dokumen berikut.")
     doc_file = st.file_uploader("Upload Document", type=["pdf", "txt", "docx"])
-    if st.button("Generate from Document"):
+    if st.button("Kirim Perintah Dokumen"):
         if doc_file:
             doc_data = doc_file.read()
             model = genai.GenerativeModel(GEMINI_MODEL)
@@ -79,9 +74,9 @@ with tab3:
 
 # 4. Audio
 with tab4:
-    prompt = st.text_area("Prompt untuk audio:", value="Transkrip audio berikut.")
+    prompt = st.text_area("Perintah untuk audio:", value="Ubah menjadi tulisan audio berikut.")
     audio_file = st.file_uploader("Upload Audio", type=["mp3", "wav", "m4a"])
-    if st.button("Generate from Audio"):
+    if st.button("Kirim Perintah Audio"):
         if audio_file:
             audio_data = audio_file.read()
             model = genai.GenerativeModel(GEMINI_MODEL)
